@@ -13,7 +13,7 @@ import com.company.dto.UserDto;
 public interface UserService {
 	public int dupcheck(String userid);
 	public void logout(HttpServletRequest request) throws IOException;
-	public UserDto userdetail(int userno);
 	public void login(UserDto dto, HttpServletRequest request, HttpServletResponse response) throws IOException;
 	public void join(UserDto dto, HttpServletRequest request, HttpServletResponse response) throws IOException;
+	public void userdetail(int userno,HttpServletRequest request, HttpServletResponse response) throws IOException;
 }

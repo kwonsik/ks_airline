@@ -18,5 +18,5 @@ public interface ReservationDao {
 	public void reservationK(ReservationVO vo);
 	public int getAprice(ReservationVO vo);
 	public int getKprice(ReservationVO vo);
-	public UserDto findUser(int userno);
+	
 }

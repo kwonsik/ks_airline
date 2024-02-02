@@ -32,7 +32,5 @@
 		insert into reservation (rpno,no,price,adult) 
 		value((select max(rpno) from reservationPrice),#{no},(select kprice from airticket where no=#{no}),'K')
 	</insert>
-	<select id="findUser" parameterType="UserDto" resultType="UserDto">
-		select * from userinfo where userno=#{userno}
-	</select>
+	
 </mapper>

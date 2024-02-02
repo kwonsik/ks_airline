@@ -16,7 +16,9 @@
 	<select id="findUserNo" parameterType="UserDto" resultType="int">
 		select userno from userinfo where userid=#{userid} and userpass=#{userpass}
 	</select>
-				
+	<select id="findUser" parameterType="UserDto" resultType="UserDto">
+		select * from userinfo where userno=#{userno}
+	</select>			
 		
 	
 </mapper>

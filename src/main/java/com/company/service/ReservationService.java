@@ -19,5 +19,5 @@ public interface ReservationService {
 	public void reservation_view(Model model);
 	public void reservation_search(AirTicketDto dto,HttpServletRequest request,HttpServletResponse response) throws IOException;
 	public void reservation(ReservationVO vo, HttpServletRequest request, HttpServletResponse response) throws IOException;
-	public UserDto userdetail(int userno);
+	
 }

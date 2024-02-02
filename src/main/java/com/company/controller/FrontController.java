@@ -83,21 +83,22 @@ public class FrontController {
 		reservationService.reservation(vo, request, response);		
 	}
 	@GetMapping("/userdetail.ks")
-	public String userdetail(Model model,int userno) {
-		model.addAttribute("dto",userService.userdetail(userno)); 
+	public String userdetail(int userno, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		userService.userdetail(userno,request,response); 
 		return "userdetail";
 	}
 	@PostMapping("/changeuser_view.ks")
-	public String changeuser_view(Model model,int userno) {
-		model.addAttribute("dto",userService.userdetail(userno)); 
+	public String changeuser_view(int userno, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		userService.userdetail(userno,request,response); 
 		return "changeUser";
 	}
+	/*
 	@PostMapping("/changeuser.ks")
 	public String changeuser(Model model,@RequestParam int userno) {
 		model.addAttribute("dto",userService.userdetail(userno)); 
 		return "changeUser";
 	}
-
+	*/
 }
 	
 

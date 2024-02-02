@@ -70,9 +70,13 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserDto userdetail(int userno) {
-		return null;
+	public void userdetail(int userno, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		request.setAttribute("dto", dao.findUser(userno));
+		
 	}
+
 
 
 	
