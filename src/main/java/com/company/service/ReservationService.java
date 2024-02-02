@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.company.dto.AirTicketDto;
 import com.company.dto.ReservationDto;
@@ -19,5 +20,5 @@ public interface ReservationService {
 	public void reservation_view(Model model);
 	public void reservation_search(AirTicketDto dto,HttpServletRequest request,HttpServletResponse response) throws IOException;
 	public void reservation(ReservationVO vo, HttpServletRequest request, HttpServletResponse response) throws IOException;
-	
+	public void myreservation(@RequestParam int userno,Model model) throws IOException;
 }

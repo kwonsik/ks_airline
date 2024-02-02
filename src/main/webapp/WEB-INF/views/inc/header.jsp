@@ -945,7 +945,7 @@ a:hover, a:focus {
 												class='glyphicon glyphicon-user'></span> <span>나의 정보
 													보기</span>
 										</a></li>
-										<li><a href='myreservation.ks'> <span
+										<li><a href='myreservation.ks?userno=${userno }'> <span
 												class='glyphicon glyphicon-list-alt'></span> <span>나의
 													예약 조회</span>
 										</a></li>

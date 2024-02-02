@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.company.dto.AirTicketDto;
 import com.company.dto.ReservationDto;
+import com.company.dto.ReservationPriceDto;
 import com.company.dto.ReservationVO;
 import com.company.dto.UserDto;
 
@@ -18,5 +19,6 @@ public interface ReservationDao {
 	public void reservationK(ReservationVO vo);
 	public int getAprice(ReservationVO vo);
 	public int getKprice(ReservationVO vo);
+	public List<ReservationPriceDto> myreservation(int userno);
 	
 }

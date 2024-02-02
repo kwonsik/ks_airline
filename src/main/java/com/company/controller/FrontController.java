@@ -110,6 +110,11 @@ public class FrontController {
 		userService.deleteUser(userno, request, response);
 		
 	}
+	@GetMapping("/myreservation.ks")
+	public String myreservation(@RequestParam int userno,Model model) throws IOException {
+		reservationService.myreservation(userno, model);
+		return "myreservation";
+	}
 	
 }
 	

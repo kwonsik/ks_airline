@@ -119,6 +119,11 @@ public class ReservationServiceImpl implements ReservationService{
 			out.print("<script>alert('관리자에게 문의해주세요');location.href='main.ks'</script>");
 		}
 		
+	}
+
+	@Override
+	public void myreservation(int userno, Model model) throws IOException {
+		model.addAttribute("list",dao.myreservation(userno));	
 	}	
 
 }

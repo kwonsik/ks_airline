@@ -32,5 +32,7 @@
 		insert into reservation (rpno,no,price,adult) 
 		value((select max(rpno) from reservationPrice),#{no},(select kprice from airticket where no=#{no}),'K')
 	</insert>
-	
+	<select id="myreservation" parameterType="int" resultType="reservationPriceDto">
+		select * from reservationPrice order by rpno desc;
+	</select>
 </mapper>
