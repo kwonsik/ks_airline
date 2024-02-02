@@ -90,7 +90,7 @@
 	<div class="container">
 		<h3>회원정보 수정</h3>
 		<h3 class="hidden">회원정보 수정</h3>
-		<form action="changeuser.ks" method="post" id="changeform">
+		<form action="changeuser.ks?userno=${dto.userno }" method="post" id="changeform">
 			<fieldset class="joinfield jf1 useradd userchange">
 				<legend>${dto.username }님의 정보</legend>
 				<p class="first">
@@ -125,8 +125,8 @@
 				<p class="br_bottom first">
 					<strong class="addinfo_title">SMS 수신여부</strong> <span
 						class="addinfo_desc">SMS 수신에 동의하시겠습니까?</span> <input type="radio"
-						id="yes" name="smsaccept" value="yes" /><label for="yes">예</label>
-					<input type="radio" id="no" name="smsaccept" value="no" /><label
+						id="yes" name="sms" value="Y" /><label for="yes">예</label>
+					<input type="radio" id="no" name="sms" value="N" /><label
 						for="no">아니요</label>
 				</p>
 			</fieldset>

@@ -19,6 +19,15 @@
 	<select id="findUser" parameterType="UserDto" resultType="UserDto">
 		select * from userinfo where userno=#{userno}
 	</select>			
-		
+	<update id="changeUser"  parameterType="UserDto">
+		update userinfo set useremail=#{useremail},userphone=#{userphone},userpost=#{userpost},
+		useraddress1=#{useraddress1},useraddress2=#{useraddress2},sms=#{sms} where userno=#{userno}
+	</update>
+	<select id="check_pass_ajax" parameterType="UserDto" resultType="int">
+		select count(*) from userinfo where userpass=#{userpass} and userno=#{userno}
+	</select>
+	<delete id="deleteUser" parameterType="int">
+		delete from userinfo where userno=#{userno}
+	</delete>
 	
 </mapper>

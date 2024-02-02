@@ -77,6 +77,51 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+	@Override
+	public void changeUser(UserDto dto, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		HttpSession session=request.getSession();
+		PrintWriter out=response.getWriter();
+		int result=dao.changeUser(dto);
+		
+		if(result>0) {	
+			out.print("<script>alert('회원정보를 수정했습니다.');location.href='main.ks';</script>");
+		}
+		else {
+			out.print("<script>alert('관리자에게 문의해주세요.');location.href='main.ks';</script>");
+		}
+		
+	}
+
+	@Override
+	public int check_pass_ajax(UserDto dto,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		HttpSession session=request.getSession();
+		dto.setUserno((int)session.getAttribute("userno"));
+		
+		return dao.check_pass_ajax(dto);
+	}
+
+	@Override
+	public void deleteUser(int userno, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		HttpSession session=request.getSession();
+		PrintWriter out=response.getWriter();
+		int result=dao.deleteUser(userno);
+		
+		if(result>0) {	
+			session.removeAttribute("userno");
+			out.print("<script>alert('회원탈퇴를 완료했습니다.');location.href='main.ks';</script>");
+		}
+		else {
+			out.print("<script>alert('관리자에게 문의해주세요.');location.href='main.ks';</script>");
+		}
+		
+	}
+
 
 
 	

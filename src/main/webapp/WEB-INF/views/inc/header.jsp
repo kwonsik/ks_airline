@@ -875,8 +875,7 @@ a:hover, a:focus {
 	<div class="container">
 			<!-- Modal -->
 			<div class="modal fade" id="myModal" role="dialog">
-				<form action="#" id="inputPassform" method="post">
-				<fieldset>
+				
 				<div class="modal-dialog">				
 					<!-- Modal content-->
 					<div class="modal-content">
@@ -892,12 +891,11 @@ a:hover, a:focus {
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" style="float: left"
 								data-dismiss="modal">취소</button>
-							<button type="submit" class="btn btn-primary" id="sumbit">확인</button>
+							<button type="button" class="btn btn-primary" id="check_pass_ajax">확인</button>
 						</div>
 					</div>				
 				</div>
-				</fieldset>
-				</form>
+				
 			</div>
 		</div>
 	<div class="prototype">

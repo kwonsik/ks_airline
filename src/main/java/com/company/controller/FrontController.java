@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -82,7 +83,7 @@ public class FrontController {
 	public void reservation(ReservationVO vo,HttpServletRequest request,HttpServletResponse response) throws IOException{
 		reservationService.reservation(vo, request, response);		
 	}
-	@GetMapping("/userdetail.ks")
+	@RequestMapping("/userdetail.ks")
 	public String userdetail(int userno, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		userService.userdetail(userno,request,response); 
 		return "userdetail";
@@ -92,13 +93,24 @@ public class FrontController {
 		userService.userdetail(userno,request,response); 
 		return "changeUser";
 	}
-	/*
+	
 	@PostMapping("/changeuser.ks")
-	public String changeuser(Model model,@RequestParam int userno) {
-		model.addAttribute("dto",userService.userdetail(userno)); 
-		return "changeUser";
+	public void changeuser(UserDto dto,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		userService.changeUser(dto, request, response);	
 	}
-	*/
+	
+	@PostMapping("/check_pass_ajax.ks")
+	@ResponseBody
+	public int check_pass_ajax(UserDto dto,HttpServletRequest request, HttpServletResponse response) throws IOException{
+		return userService.check_pass_ajax(dto, request, response);
+		
+	}
+	@GetMapping("/deleteUser.ks")
+	public void deleteUser(@RequestParam int userno,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		userService.deleteUser(userno, request, response);
+		
+	}
+	
 }
 	
 

@@ -205,6 +205,7 @@
 							}
 							
 						}
+						
 						let btn1 = document.querySelector("#dupcheck");
 						let postcode = document.querySelector("#postcode");
 						

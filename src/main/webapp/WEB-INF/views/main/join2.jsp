@@ -82,7 +82,7 @@
 					<strong class="addinfo_title">SMS 수신여부</strong> <span
 						class="addinfo_desc">SMS 수신에 동의하시겠습니까?</span> <input type="radio"
 						id="yes" name="sms" value="Y" /><label for="yes">예</label>
-					<input type="radio" id="N" name="sms" value="no" /><label
+					<input type="radio" id="no" name="sms" value="N" /><label
 						for="no">아니요</label>
 				</p>
 			</fieldset>
