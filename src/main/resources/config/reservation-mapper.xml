@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.ReservationDao">
+	<select id="getDList" resultType="AirticketDto">
+		select distinct departure from airticket
+	</select>
+	<select id="getAList" resultType="AirticketDto">
+		select distinct arrival from airticket
+	</select>	
+	<select id="searchList1" resultType="AirticketDto" parameterType="AirticketDto">
+		select * from airticket where departure=#{departure} and arrival=#{arrival} and date=#{date} and count!=0 and state!=2
+	</select>
+	<select id="searchList2" resultType="AirticketDto" parameterType="AirticketDto">
+		select * from airticket where departure=#{arrival} and arrival=#{departure} and date=#{date} and count!=0 and state!=2
+	</select>
+	<select id="getAprice" parameterType="reservationVO" resultType="int">
+		select aprice from airticket where no=#{no}
+	</select>
+	<select id="getKprice" parameterType="reservationVO" resultType="int">
+		select kprice from airticket where no=#{no}
+	</select>
+	<insert id="reservationPrice" parameterType="reservationVO">
+		insert into reservationPrice (userno,price) value(#{userno},#{price})
+	</insert>
+	<insert id="reservationA" parameterType="reservationVO">
+		insert into reservation (rpno,no,price,adult) 
+		value((select max(rpno) from reservationPrice),#{no},(select aprice from airticket where no=#{no}),'A')
+	</insert>
+	<insert id="reservationK" parameterType="reservationVO">
+		insert into reservation (rpno,no,price,adult) 
+		value((select max(rpno) from reservationPrice),#{no},(select kprice from airticket where no=#{no}),'K')
+	</insert>
+	<select id="findUser" parameterType="UserDto" resultType="UserDto">
+		select * from userinfo where userno=#{userno}
+	</select>
+</mapper>

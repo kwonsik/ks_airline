@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.UserDao">
+	<select id="dupcheck" parameterType="String" resultType="int">
+		select count(*) from userinfo where userid=#{userid}
+	</select>
+	<insert id="join" parameterType="UserDto">
+		insert into userinfo (userid,username,userpass,useremail,userphone,userpost,useraddress1,useraddress2,sms,userip) 
+		value(#{userid},#{username},#{userpass},#{useremail},#{userphone},#{userpost},#{useraddress1},#{useraddress2},#{sms},#{userip})
+	</insert>	
+	<select id="login" parameterType="UserDto" resultType="int">
+		select count(*) from userinfo where userid=#{userid} and userpass=#{userpass}
+	</select>	
+	<select id="findUserNo" parameterType="UserDto" resultType="int">
+		select userno from userinfo where userid=#{userid} and userpass=#{userpass}
+	</select>
+				
+		
+	
+</mapper>
