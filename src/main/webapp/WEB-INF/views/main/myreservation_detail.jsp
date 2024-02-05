@@ -6,7 +6,7 @@
 		<h3>나의 예약 조회</h3>
 		<h3 class="hidden">>나의 예약 조회</h3>
 		<p>
-			총 예약 - <span>${list1.size()}건</span>
+			예약 - <span>${list.size()}건</span>
 		</p>
 		<div class="content">
 			<form action="pay.ks" method="post" id="pay">
@@ -27,22 +27,24 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="i" begin="0"  end="${list1.size()-1 }" varStatus="status">
+				<c:forEach var="i" items="${list }" varStatus="status">
 					<tr>
-						<td>${list1[i].company }</td>
-						<td>${list1[i].name }</td>
-						<td>${list1[i].date }</td>
-						<td>${list1[i].departure }</td>
-						<td>${list1[i].arrival }</td>
-						<td>${list1[i].dtime }</td>			
-						<td>${list1[i].atime }</td>
-						<td>${list2[i].price }</td>
+						<td>${i.company }</td>
+						<td>${i.name }</td>
+						<td>${i.date }</td>
+						<td>${i.departure }</td>
+						<td>${i.arrival }</td>
+						<td>${i.dtime }</td>			
+						<td>${i.atime }</td>
+						<td>${i.price }</td>
 						<c:choose>
-							<c:when test="${list2[i].state==1 }"><td>확정대기</td></c:when>
-							<c:when test="${list2[i].state==2 }"><td>예매확정</td></c:when>
-							<c:when test="${list2[i].state==3 }"><td>취소됨</td></c:when>
+							<c:when test="${i.state==1 }"><td>확정대기</td></c:when>
+							<c:when test="${i.state==2 }"><td>예매확정</td></c:when>
+							<c:when test="${i.state==3 }"><td>취소됨</td></c:when>
 						</c:choose>
-						<td><input type="checkbox" name="check" value="${list2[i].rno }" style="width:20%"></td>
+						<td><input type="checkbox" name="rno" value="${i.rno }" style="width:20%"
+						<c:if test="${i.state=='3'}">disabled</c:if>
+						></td>
 					</tr>
 				</c:forEach>
 				</tbody>				
@@ -61,8 +63,8 @@
 		<script>
 			$(function(){
 				 $("#cancle").on("click",function(){
-					 	$("#pay").attr("action","cancle.ks");
-					 	$("#pay").attr("id","cancle");
+					 	$("#pay").attr("action","reservationCancle.ks");
+					 	$("#pay").attr("id","reservationCancle");
 	                });
 			});
 			

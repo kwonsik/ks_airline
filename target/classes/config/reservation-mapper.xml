@@ -32,7 +32,21 @@
 		insert into reservation (rpno,no,price,adult) 
 		value((select max(rpno) from reservationPrice),#{no},(select kprice from airticket where no=#{no}),'K')
 	</insert>
+	<update id="reservationCount" parameterType="reservationVO">
+		update airticket set count=count-1 where no=1
+	</update>
 	<select id="myreservation" parameterType="int" resultType="reservationPriceDto">
 		select * from reservationPrice order by rpno desc;
 	</select>
+	<select id="myreservation_detail" parameterType="int" resultType="reservationVO">
+		select a.company,a.name,a.date,a.arrival,a.departure,a.atime,a.dtime,rv.price,rv.state,rv.rno 
+		 from reservation rv join airticket a join reservationPrice rp
+		on(a.no=rv.no and rv.rpno=rp.rpno) where rp.rpno=#{rpno} order by rno desc
+	</select>
+	<update id="pay" parameterType="int">
+		update reservation set state=2 where rno=#{rno}
+	</update>
+	<update id="reservationCancle" parameterType="int">
+		update reservation set state=3 where rno=#{rno}
+	</update>
 </mapper>

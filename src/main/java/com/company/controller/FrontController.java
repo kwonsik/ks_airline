@@ -115,7 +115,19 @@ public class FrontController {
 		reservationService.myreservation(userno, model);
 		return "myreservation";
 	}
-	
+	@GetMapping("/reservation_detail.ks")
+	public String myreservation_detail(@RequestParam int rpno,Model model) throws IOException {
+		reservationService.myreservation_detail(rpno, model);
+		return "myreservation_detail";
+	}
+	@PostMapping("/pay.ks")
+	public void pay(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		reservationService.pay(request, response);		
+	}
+	@PostMapping("/reservationCancle.ks")
+	public void reservationCancle(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		reservationService.reservationCancle(request, response);		
+	}
 }
 	
 

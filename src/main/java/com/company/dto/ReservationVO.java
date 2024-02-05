@@ -18,6 +18,6 @@ public class ReservationVO {
 +--------+----------+------+-----+-------------------+-------------------+
 	*/
 	private int rno,rpno,no,price,state,userno,adultCnt,kidCnt;
-	private String time,adult;
+	private String time,adult,company,name,date,departure,arrival,dtime,atime;
 	
 }

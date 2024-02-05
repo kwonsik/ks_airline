@@ -86,12 +86,14 @@ public class ReservationServiceImpl implements ReservationService{
 				dao.reservationA(vo);
 				vo.setNo(Integer.parseInt(request.getParameter("select2")));
 				dao.reservationA(vo);
+				dao.reservationCount(vo);
 			}
 			for(int i=0;i<kid;i++) {
 				vo.setNo(Integer.parseInt(request.getParameter("select")));
 				dao.reservationK(vo);
 				vo.setNo(Integer.parseInt(request.getParameter("select2")));
 				dao.reservationK(vo);
+				dao.reservationCount(vo);
 			}
 		}
 		else {
@@ -104,12 +106,13 @@ public class ReservationServiceImpl implements ReservationService{
 			for(int i=0;i<adult;i++) {
 				vo.setNo(Integer.parseInt(request.getParameter("select")));
 				dao.reservationA(vo);
+				dao.reservationCount(vo);
 
 			}
 			for(int i=0;i<kid;i++) {
 				vo.setNo(Integer.parseInt(request.getParameter("select")));
 				dao.reservationK(vo);
-
+				dao.reservationCount(vo);
 			}
 		}
 		if(result>0) {
@@ -124,6 +127,49 @@ public class ReservationServiceImpl implements ReservationService{
 	@Override
 	public void myreservation(int userno, Model model) throws IOException {
 		model.addAttribute("list",dao.myreservation(userno));	
+	}
+
+	@Override
+	public void myreservation_detail(int rpno, Model model) throws IOException {
+		model.addAttribute("list",dao.myreservation_detail(rpno));	
+		
+	}
+
+	@Override
+	public void pay(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		String rno[]=request.getParameterValues("rno");
+		PrintWriter out=response.getWriter();
+		int result=0;
+		for(int i=0;i<rno.length;i++) {
+			result+=dao.pay(Integer.parseInt(rno[i]));
+		}
+		if(result==rno.length) {
+			out.print("<script>alert('결제 완료!');location.href='main.ks'</script>");
+		}
+		else {
+			out.print("<script>alert('관리자에게 문의해주세요');location.href='main.ks'</script>");
+		}
+	}
+
+	@Override
+	public void reservationCancle(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		String rno[]=request.getParameterValues("rno");
+		PrintWriter out=response.getWriter();
+		int result=0;
+		for(int i=0;i<rno.length;i++) {
+			result+=dao.reservationCancle(Integer.parseInt(rno[i]));
+		}
+		if(result==rno.length) {
+			out.print("<script>alert('취소 완료!');location.href='main.ks'</script>");
+		}
+		else {
+			out.print("<script>alert('관리자에게 문의해주세요');location.href='main.ks'</script>");
+		}
+		
 	}	
 
 }

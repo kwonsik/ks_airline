@@ -19,6 +19,10 @@ public interface ReservationDao {
 	public void reservationK(ReservationVO vo);
 	public int getAprice(ReservationVO vo);
 	public int getKprice(ReservationVO vo);
+	public int reservationCount(ReservationVO vo);
 	public List<ReservationPriceDto> myreservation(int userno);
+	public List<ReservationVO> myreservation_detail(int rpno);
+	public int pay(int rno);
+	public int reservationCancle(int rno);
 	
 }

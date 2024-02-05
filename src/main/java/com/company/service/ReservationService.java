@@ -21,4 +21,7 @@ public interface ReservationService {
 	public void reservation_search(AirTicketDto dto,HttpServletRequest request,HttpServletResponse response) throws IOException;
 	public void reservation(ReservationVO vo, HttpServletRequest request, HttpServletResponse response) throws IOException;
 	public void myreservation(@RequestParam int userno,Model model) throws IOException;
+	public void myreservation_detail(@RequestParam int rpno,Model model) throws IOException;
+	public void pay(HttpServletRequest request, HttpServletResponse response) throws IOException;
+	public void reservationCancle(HttpServletRequest request, HttpServletResponse response) throws IOException;
 }
