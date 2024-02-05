@@ -8,6 +8,9 @@ import com.company.dto.UserDto;
 public interface UserDao {
 	public int dupcheck(String userid);
 	public int join(UserDto dto);
+	public UserDto findId(UserDto dto);
+	public int findPass(UserDto dto);
+	public int changePass(UserDto dto);
 	public int login(UserDto dto);
 	public int findUserNo(UserDto dto);
 	public UserDto userDetail(int userno);

@@ -10,6 +10,15 @@
 		insert into userinfo (userid,username,userpass,useremail,userphone,userpost,useraddress1,useraddress2,sms,userip) 
 		value(#{userid},#{username},#{userpass},#{useremail},#{userphone},#{userpost},#{useraddress1},#{useraddress2},#{sms},#{userip})
 	</insert>	
+	<select id="findId" parameterType="UserDto" resultType="UserDto">
+		select userid from userinfo where useremail=#{useremail} and userphone=#{userphone}
+	</select>
+	<select id="findPass" parameterType="UserDto" resultType="int">
+		select count(*) from userinfo where userid=#{userid} and useremail=#{useremail} and userphone=#{userphone}
+	</select>
+	<update id="changePass">
+		update userinfo set userpass=#{userpass} where userid=#{userid}
+	</update>
 	<select id="login" parameterType="UserDto" resultType="int">
 		select count(*) from userinfo where userid=#{userid} and userpass=#{userpass}
 	</select>	

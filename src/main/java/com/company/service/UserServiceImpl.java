@@ -122,6 +122,53 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+	@Override
+	public void findId(UserDto dto, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		dto=dao.findId(dto);
+		String result="";
+		if(dto!=null) {	
+			result="회원님의 아이디는 "+dto.getUserid()+"입니다.";
+			out.print("<script>alert('"+result+"');location.href='main.ks';</script>");
+		}
+		else {
+			out.print("<script>alert('이메일, 전화번호를 확인해주세요.');location.href='main.ks';</script>");
+		}
+		
+	}
+
+	@Override
+	public void findPass(UserDto dto, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		int result=dao.findPass(dto);
+		if(result>0) {	
+
+			out.print("<script>alert('비밀번호 변경 화면으로 이동합니다.');location.href='changePass_view.ks?userid="+dto.getUserid()+"';</script>");
+		}
+		else {
+			out.print("<script>alert('아이디, 이메일, 전화번호를 확인해주세요.');location.href='main.ks';</script>");
+		}
+	}
+
+	@Override
+	public void changePass(UserDto dto, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		int result=dao.changePass(dto);
+		if(result>0) {	
+			out.print("<script>alert('비밀번호를 변경했습니다.');location.href='main.ks';</script>");
+		}
+		else {
+			out.print("<script>alert('관리자에게 문의해주세요.');location.href='main.ks';</script>");
+		}
+	
+	}
+
 
 
 	

@@ -14,6 +14,9 @@ import com.company.dto.UserDto;
 public interface UserService {
 	public int dupcheck(String userid);
 	public void logout(HttpServletRequest request) throws IOException;
+	public void findId(UserDto dto, HttpServletRequest request, HttpServletResponse response) throws IOException;
+	public void findPass(UserDto dto, HttpServletRequest request, HttpServletResponse response) throws IOException;
+	public void changePass(UserDto dto, HttpServletRequest request, HttpServletResponse response) throws IOException;
 	public void login(UserDto dto, HttpServletRequest request, HttpServletResponse response) throws IOException;
 	public void join(UserDto dto, HttpServletRequest request, HttpServletResponse response) throws IOException;
 	public void userdetail(int userno,HttpServletRequest request, HttpServletResponse response) throws IOException;

@@ -8,9 +8,11 @@
 <section class="findpassword">
 	<div class="container">
 		<h3>비밀번호 바꾸기</h3>
+	
 		<h3 class="hidden">비밀번호 바꾸기</h3>
 
 		<form action="changePass.ks" method="post" id="changePassform">
+		<input type="text" class="hidden" name="userid" id="userid" value="${param.userid }">
 			<fieldset class="joinfield jf1">
 
 				<p class="first">

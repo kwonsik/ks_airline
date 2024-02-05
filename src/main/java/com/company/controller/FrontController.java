@@ -56,6 +56,30 @@ public class FrontController {
 		userService.join(dto,request,response);
 		
 	}
+	@GetMapping("/findId_view.ks")
+	public String findId_view(){
+		return "findId";
+	}
+	@PostMapping("/findId.ks")
+	public void findId(UserDto dto,HttpServletRequest request,HttpServletResponse response) throws IOException {
+		userService.findId(dto, request, response);
+	}
+	@GetMapping("/findPass_view.ks")
+	public String findPass_view(){
+		return "findPass";
+	}
+	@PostMapping("/findPass.ks")
+	public void findPass(UserDto dto,HttpServletRequest request,HttpServletResponse response) throws IOException {
+		userService.findPass(dto, request, response);
+	}
+	@GetMapping("/changePass_view.ks")
+	public String changePass_view(){
+		return "changePass";
+	}
+	@PostMapping("/changePass.ks")
+	public void changePass(UserDto dto,HttpServletRequest request,HttpServletResponse response) throws IOException {
+		userService.changePass(dto, request, response);
+	}
 	@PostMapping("/login.ks")
 	public void login(UserDto dto,HttpServletRequest request,HttpServletResponse response) throws IOException {
 		
