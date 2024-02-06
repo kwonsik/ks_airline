@@ -57,8 +57,9 @@ public class UserServiceImpl implements UserService{
 		
 		if(result>0) {
 			dto.setUserno(dao.findUserNo(dto));
+			dto=dao.findUser(dto.getUserno());
 			session.setAttribute("userno", dto.getUserno());
-			System.out.println(dto.getUserno());
+			session.setAttribute("username", dto.getUsername());
 			out.print("<script>alert('환영합니다');location.href='main.ks';</script>");}
 		else {out.print("<script>alert('아이디와 비밀번호를 확인해주세요');location.href='main.ks';</script>");}
 	}
@@ -99,6 +100,7 @@ public class UserServiceImpl implements UserService{
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		HttpSession session=request.getSession();
+		System.out.println(dto);
 		dto.setUserno((int)session.getAttribute("userno"));
 		
 		return dao.check_pass_ajax(dto);

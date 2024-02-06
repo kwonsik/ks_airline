@@ -32,7 +32,7 @@
 </script>
 <div class="container"  style="margin-top:5%; min-height:500px">
 	<h3>글쓰기 </h3>
-		<form action="board_write.ks" method="post"  id="writeForm" >
+		<form action="board_write.ks?userno=${userno} " method="post"  id="writeForm" >
 		   <fieldset>
 			<div class="form-group">
 			  <label for="bname"  >이름</label>

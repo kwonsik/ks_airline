@@ -5,6 +5,8 @@ package com.company.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,12 +19,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.company.dto.AirTicketDto;
+import com.company.dto.BoardDto;
 import com.company.dto.ReservationVO;
 import com.company.dto.UserDto;
+import com.company.service.BoardService;
 import com.company.service.ReservationService;
 import com.company.service.UserService;
 
@@ -31,7 +36,7 @@ public class FrontController {
 	
 	@Autowired UserService userService;
 	@Autowired ReservationService reservationService;
-	
+	@Autowired BoardService boardService;
 	
 	@GetMapping("/main.ks")
 	public String main() {
@@ -152,6 +157,43 @@ public class FrontController {
 	public void reservationCancle(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		reservationService.reservationCancle(request, response);		
 	}
+	@RequestMapping(value = "/board_list.ks", method = RequestMethod.GET)
+	public String board_list(@RequestParam(value="pstartno", defaultValue = "0")int pstartno ,Model model) {
+		Map<String, Integer> para=new HashMap<String, Integer>();
+		para.put("pstartno", pstartno);
+		para.put("onepagelimit", 10);
+		model.addAttribute("list",boardService.listCnt(para));
+		model.addAttribute("paging",boardService.paging(pstartno));
+		return "board"; // 경로로 넘길게 - view
+	}
+	@GetMapping("/board_detail.ks")
+	public String board_detail(@RequestParam int bno,Model model) throws IOException {
+		boardService.board_detail(bno, model);
+		return "boardDetail";
+	}
+	@PostMapping("/board_edit_view.ks")
+	public String board_edit_view(@RequestParam int bno,Model model) throws IOException {
+		boardService.board_detail(bno, model);
+		return "boardEdit";
+	}
+	@PostMapping("/board_edit.ks")
+	public void board_edit(BoardDto dto,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		boardService.board_edit(dto, request, response);
+	}
+	@PostMapping("/board_delete.ks")
+	public void board_delete(@RequestParam int bno,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		boardService.board_delete(bno, request, response);
+	}
+	@GetMapping("/board_write_view.ks")
+	public String board_write_view(){
+		
+		return "boardwrite";
+	}
+	@PostMapping("/board_write.ks")
+	public void board_write(BoardDto dto,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		boardService.board_write(dto, request, response);
+	}
+
 }
 	
 

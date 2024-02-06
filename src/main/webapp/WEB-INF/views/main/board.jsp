@@ -24,7 +24,7 @@
 					</tr>
 				</thead>
 				<tbody style="text-align:center;">
-					<c:forEach var="i" items="${paging.blist10 }" varStatus="status">
+					<c:forEach var="i" items="${list }" varStatus="status">
 						
 						<tr>
 							<td>${paging.listTotal-paging.pstartno-status.index}</td>

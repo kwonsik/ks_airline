@@ -886,7 +886,7 @@ a:hover, a:focus {
 						<p style="text-align: center;">
 							<!-- select -->
 							<label for="inputpass">비밀번호</label> <input type="password"
-								name="inputpass" id="inputpass">
+								name="userpass" id="inputpass">
 						</p>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" style="float: left"

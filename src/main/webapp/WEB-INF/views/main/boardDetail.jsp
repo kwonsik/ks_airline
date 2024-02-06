@@ -44,26 +44,27 @@
 				$("#boardDelete").click(function() {
 					$("#myModal").modal();
 				});
-				$("#inputPassform").on("submit",function(){
+				$("#check_pass_ajax").on("click",function(){
 					$.ajax({
 						url:"check_pass_ajax.ks", //경로
 						type:"post", //get, post
 						dataType:"text", //text, json, xml
-						data:{inputpass : $("#inputpass").val()},
+						data:{userpass : $("#inputpass").val()},
 						success:function(data){
 							if(data==1){
-								$("#boardEditForm").attr("action","board_delete.ks");
+								$("#boardEditForm").attr("action","board_delete.ks?bno=${dto.bno }");
 								$("#boardEditForm").submit();
 							}
 							else{
 								alert("비밀번호를 확인해주세요");$(".close").on;
+								
 							}
 						}, //성공시 처리
 						error:function(xhr, textStatus, errorThrown){
 							$(".p1").html(textStatus+"(HTTP-"+xhr.status+"");
 						} //실패시 처리
 					});//ajax
-				});			
+				});		
 			});
 	</script>
 </div>
