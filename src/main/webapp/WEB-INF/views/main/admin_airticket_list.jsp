@@ -8,8 +8,6 @@
 		<p>
 			총 항공편 - <span>${paging.listTotal }편</span>
 		</p>
-		${list }
-		${paging}
 		<div class="content">
 			<form action="admin_airticket_delete.ks" method="post" id="airDeleteForm">
 			<fieldset>

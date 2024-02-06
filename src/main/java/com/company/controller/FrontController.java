@@ -208,7 +208,14 @@ public class FrontController {
 		model.addAttribute("paging",airticketService.paging(pstartno));
 		return "admin_airticket_list";
 	}
-	
+	@GetMapping("/admin_airticket_add_view.ks")
+	public String admin_airticket_add_view(){		
+		return "admin_airticket_add";
+	}
+	@PostMapping("/admin_airticket_add.ks")
+	public void admin_airticket_add(AirTicketDto dto,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		airticketService.admin_airticket_add(dto, request, response);
+	}
 }
 	
 

@@ -6,9 +6,12 @@
 	<select id="listtotal"  resultType="int">
 		select count(*) from airticket
 	</select>
-	<select id="listCnt" resultType="BoardDto" parameterType="java.util.HashMap">
+	<select id="listCnt" resultType="AirTicketDto" parameterType="java.util.HashMap">
 		select * from airticket order by no desc limit #{pstartno}, #{onepagelimit}
-	</select>
-
-	
+	</select>	
+	<insert id="admin_airticket_add" parameterType="AirTicketDto">
+		insert into airticket (company,name,departure,arrival,date,dtime,atime,aprice,kprice,count) 
+		value(#{company},#{name},#{departure},#{arrival},
+		#{date},#{dtime},#{atime},#{aprice},#{kprice},#{count})
+	</insert>
 </mapper>
