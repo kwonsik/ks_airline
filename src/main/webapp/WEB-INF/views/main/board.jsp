@@ -63,7 +63,7 @@
 				</ul>
 				<c:choose>
 					<c:when test="${userno==0 }">
-						<input type="button" value="글삭제" title="글삭제" style="float: left;" id="deleteBoard" class="btn btn-danger" />
+						<input type="button" value="글삭제" title="글삭제" style="float: left;" id="boardDelete" class="btn btn-danger" />
 						<a href="board_write_view.ks"   class="btn btn-primary" style="float: right;">글쓰기</a>
 					</c:when>
 					<c:when test="${userno!=null }">
@@ -78,28 +78,29 @@
 	</div>
 	<script>
 			$(document).ready(function() {
-				$("#deleteBoard").click(function() {
+				$("#boardDelete").click(function() {
 					$("#myModal").modal();
 				});
-				$("#inputPassform").on("submit",function(){
+				$("#check_pass_ajax").on("click",function(){
 					$.ajax({
 						url:"check_pass_ajax.ks", //경로
 						type:"post", //get, post
 						dataType:"text", //text, json, xml
-						data:{inputpass : $("#inputpass").val()},
+						data:{userpass : $("#inputpass").val()},
 						success:function(data){
 							if(data==1){
 								$("#boardDeleteForm").submit();
 							}
 							else{
 								alert("비밀번호를 확인해주세요");$(".close").on;
+								
 							}
 						}, //성공시 처리
 						error:function(xhr, textStatus, errorThrown){
 							$(".p1").html(textStatus+"(HTTP-"+xhr.status+"");
 						} //실패시 처리
 					});//ajax
-				});			
+				});	
 			});
 		</script>
 </section>

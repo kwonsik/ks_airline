@@ -14,4 +14,5 @@ public interface BoardDao {
 	public void board_hit(int bno);
 	public int board_edit(BoardDto dto);
 	public int board_delete(int bno);
+	
 }

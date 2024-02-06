@@ -24,4 +24,6 @@ public interface ReservationService {
 	public void myreservation_detail(@RequestParam int rpno,Model model) throws IOException;
 	public void pay(HttpServletRequest request, HttpServletResponse response) throws IOException;
 	public void reservationCancle(HttpServletRequest request, HttpServletResponse response) throws IOException;
+
+
 }

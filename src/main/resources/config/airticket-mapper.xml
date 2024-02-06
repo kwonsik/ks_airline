@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.AirTicketDao">
+	<select id="listtotal"  resultType="int">
+		select count(*) from airticket
+	</select>
+	<select id="listCnt" resultType="BoardDto" parameterType="java.util.HashMap">
+		select * from airticket order by no desc limit #{pstartno}, #{onepagelimit}
+	</select>
+
+	
+</mapper>

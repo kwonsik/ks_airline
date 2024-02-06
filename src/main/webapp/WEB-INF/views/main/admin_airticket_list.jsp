@@ -8,6 +8,8 @@
 		<p>
 			총 항공편 - <span>${paging.listTotal }편</span>
 		</p>
+		${list }
+		${paging}
 		<div class="content">
 			<form action="admin_airticket_delete.ks" method="post" id="airDeleteForm">
 			<fieldset>
@@ -28,7 +30,7 @@
 					</tr>
 				</thead>
 				<tbody style="text-align: center;">
-					<c:forEach var="i" items="${paging.alist10 }" varStatus="status">
+					<c:forEach var="i" items="${list }" varStatus="status">
 						<tr>
 							<td>${i.company }</td>
 							<td><a href='airticket_detail.ks?no=${i.no }'>${i.name }</a></td>

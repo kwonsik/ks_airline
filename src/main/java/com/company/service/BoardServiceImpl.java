@@ -98,6 +98,26 @@ public class BoardServiceImpl implements BoardService{
 		
 	}
 
+	@Override
+	public void admin_board_delete(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		String check[]=request.getParameterValues("check");
+
+		int result=0;
+		int bno=0;
+		for(int i=0;i<check.length;i++) {
+			bno=Integer.parseInt(check[i]);
+			result+=dao.board_delete(bno);		
+		}
+		if(result==check.length) {
+			out.print("<script>alert('삭제 완료!');location.href='board_list.ks'</script>");
+		}
+	
+	}
+
 	
 
 	

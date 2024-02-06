@@ -22,6 +22,8 @@
 				<value>classpath:/config/reservation-mapper.xml</value>
 				<value>classpath:/config/user-mapper.xml</value>
 				<value>classpath:/config/board-mapper.xml</value>
+				<value>classpath:/config/airticket-mapper.xml</value>
+				
 				
 			</list>
 		</property>

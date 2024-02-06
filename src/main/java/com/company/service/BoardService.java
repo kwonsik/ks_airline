@@ -24,4 +24,6 @@ public interface BoardService {
 	public void board_edit(BoardDto dto,HttpServletRequest request, HttpServletResponse response) throws IOException;
 	public void board_delete(int bno,HttpServletRequest request, HttpServletResponse response) throws IOException;
 	
+	public void admin_board_delete(HttpServletRequest request, HttpServletResponse response) throws IOException;
+	
 }

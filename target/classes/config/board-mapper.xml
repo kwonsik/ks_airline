@@ -22,6 +22,8 @@
 	<update id="board_edit" parameterType="BoardDto">
 		update board set btitle=#{btitle},bcontent=#{bcontent} where bno=#{bno}
 	</update>
-		
+	<delete id="board_delete" parameterType="int">
+		delete from board where bno=#{bno}
+	</delete>	
 	
 </mapper>

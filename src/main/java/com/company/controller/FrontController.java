@@ -27,6 +27,7 @@ import com.company.dto.AirTicketDto;
 import com.company.dto.BoardDto;
 import com.company.dto.ReservationVO;
 import com.company.dto.UserDto;
+import com.company.service.AirticketService;
 import com.company.service.BoardService;
 import com.company.service.ReservationService;
 import com.company.service.UserService;
@@ -37,6 +38,7 @@ public class FrontController {
 	@Autowired UserService userService;
 	@Autowired ReservationService reservationService;
 	@Autowired BoardService boardService;
+	@Autowired AirticketService airticketService;
 	
 	@GetMapping("/main.ks")
 	public String main() {
@@ -164,7 +166,7 @@ public class FrontController {
 		para.put("onepagelimit", 10);
 		model.addAttribute("list",boardService.listCnt(para));
 		model.addAttribute("paging",boardService.paging(pstartno));
-		return "board"; // 경로로 넘길게 - view
+		return "board"; 
 	}
 	@GetMapping("/board_detail.ks")
 	public String board_detail(@RequestParam int bno,Model model) throws IOException {
@@ -193,7 +195,20 @@ public class FrontController {
 	public void board_write(BoardDto dto,HttpServletRequest request, HttpServletResponse response) throws IOException {
 		boardService.board_write(dto, request, response);
 	}
-
+	@PostMapping("/admin_board_delete.ks")
+	public void admin_board_delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		boardService.admin_board_delete(request, response);
+	}
+	@GetMapping("/admin_airticket_list.ks")
+	public String admin_airticket_list(@RequestParam(value="pstartno", defaultValue = "0")int pstartno ,Model model){
+		Map<String, Integer> para=new HashMap<String, Integer>();
+		para.put("pstartno", pstartno);
+		para.put("onepagelimit", 10);
+		model.addAttribute("list",airticketService.listCnt(para));
+		model.addAttribute("paging",airticketService.paging(pstartno));
+		return "admin_airticket_list";
+	}
+	
 }
 	
 
