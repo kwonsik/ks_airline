@@ -51,27 +51,9 @@
 	<script>
 			$(document).ready(function() {
 				$("#edit").click(function() {
-					$("#myModal").modal();
+					$("#airEditForm").submit();
 				});
-				$("#inputPassform").on("submit",function(){
-					$.ajax({
-						url:"check_pass_ajax.ks", //경로
-						type:"post", //get, post
-						dataType:"text", //text, json, xml
-						data:{inputpass : $("#inputpass").val()},
-						success:function(data){
-							if(data==1){
-								$("#airEditForm").submit();
-							}
-							else{
-								alert("비밀번호를 확인해주세요");$(".close").on;
-							}
-						}, //성공시 처리
-						error:function(xhr, textStatus, errorThrown){
-							$(".p1").html(textStatus+"(HTTP-"+xhr.status+"");
-						} //실패시 처리
-					});//ajax
-				});			
+						
 			});
 		</script>
 	<!-- container -->

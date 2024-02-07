@@ -216,6 +216,29 @@ public class FrontController {
 	public void admin_airticket_add(AirTicketDto dto,HttpServletRequest request, HttpServletResponse response) throws IOException {
 		airticketService.admin_airticket_add(dto, request, response);
 	}
+	@GetMapping("/admin_airticket_detail.ks")
+	public String admin_airticket_detail(@RequestParam int no,Model model){
+		airticketService.admin_airticket_detail(no, model);
+		return "admin_airticket_detail";
+	}
+	@PostMapping("/admin_airticket_edit_view.ks")
+	public String admin_airticket_edit_view(@RequestParam int no,Model model){
+		airticketService.admin_airticket_detail(no, model);
+		return "admin_airticket_edit";
+	}
+	@PostMapping("/admin_airticket_edit.ks")
+	public void admin_airticket_edit(AirTicketDto dto,@RequestParam int no,HttpServletRequest request, HttpServletResponse response) throws IOException{
+		airticketService.admin_airticket_edit(dto, no, request, response);	
+	}
+	@PostMapping("/admin_airticket_stop.ks")
+	public void admin_airticket_stop(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		System.out.println("들어옴 ");
+		airticketService.admin_airticket_stop(request, response);
+	}
+	
+	
+	
+	
 }
 	
 

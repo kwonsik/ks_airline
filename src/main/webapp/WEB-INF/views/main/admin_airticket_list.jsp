@@ -9,7 +9,7 @@
 			총 항공편 - <span>${paging.listTotal }편</span>
 		</p>
 		<div class="content">
-			<form action="admin_airticket_delete.ks" method="post" id="airDeleteForm">
+			<form action="admin_airticket_stop.ks" method="post" id="airDeleteForm">
 			<fieldset>
 			<table class="table table-borderd">
 				<thead>
@@ -31,7 +31,7 @@
 					<c:forEach var="i" items="${list }" varStatus="status">
 						<tr>
 							<td>${i.company }</td>
-							<td><a href='airticket_detail.ks?no=${i.no }'>${i.name }</a></td>
+							<td><a href='admin_airticket_detail.ks?no=${i.no }'>${i.name }</a></td>
 							<td>${i.date }</td>
 							<td>${i.departure}</td>
 							<td>${i.arrival }</td>
@@ -100,12 +100,12 @@
 			$(document).ready(function() {
 				$("#delete").click(function() {
 					$("#myModal").modal();
-					$("#inputPassform").on("submit",function(){
+					$("#check_pass_ajax").on("click",function(){
 						$.ajax({
 							url:"check_pass_ajax.ks", //경로
 							type:"post", //get, post
 							dataType:"text", //text, json, xml
-							data:{inputpass : $("#inputpass").val()},
+							data:{userpass : $("#inputpass").val()},
 							success:function(data){
 								if(data==1){
 									$("#airDeleteForm").submit();

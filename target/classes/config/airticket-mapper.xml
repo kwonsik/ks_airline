@@ -14,4 +14,19 @@
 		value(#{company},#{name},#{departure},#{arrival},
 		#{date},#{dtime},#{atime},#{aprice},#{kprice},#{count})
 	</insert>
+	<select id="admin_airticket_detail" parameterType="int" resultType="AirTicketDto">
+		select * from airticket where no=#{no}
+	</select>
+	<update id="admin_airticket_edit" parameterType="AirTicketDto">
+		update airticket set 
+		departure=#{departure},arrival=#{arrival},date=#{date},dtime=#{dtime},
+		atime=#{atime},aprice=#{aprice},kprice=#{kprice},count=#{count},addtime=now() 
+		where no=#{no}
+	</update>
+	<update id="admin_airticket_stop" parameterType="int">
+		update airticket set state=2 where no=#{no};
+	</update>
+	<update id="admin_reservation_cancle" parameterType="int">
+		update reservation set state=4 where no=#{no};
+	</update>
 </mapper>
