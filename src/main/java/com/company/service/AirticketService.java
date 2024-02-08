@@ -22,4 +22,6 @@ public interface AirticketService {
 	public void admin_airticket_detail(int no,Model model);
 	public void admin_airticket_edit(AirTicketDto dto,@RequestParam int no,HttpServletRequest request, HttpServletResponse response) throws IOException;
 	public void admin_airticket_stop(HttpServletRequest request, HttpServletResponse response) throws IOException;
+	public void admin_airticket_restart(HttpServletRequest request, HttpServletResponse response) throws IOException;
+	
 }

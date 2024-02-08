@@ -29,4 +29,8 @@
 	<update id="admin_reservation_cancle" parameterType="int">
 		update reservation set state=4 where no=#{no};
 	</update>
+	<update id="admin_airticket_restart" parameterType="int">
+		update airticket set state=1 where no=#{no};
+	</update>
+
 </mapper>

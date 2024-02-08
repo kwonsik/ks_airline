@@ -92,5 +92,27 @@ public class AirTicketServiceImpl implements AirticketService{
 
 		
 	}
+	@Override
+	public void admin_airticket_restart(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		String check[]=request.getParameterValues("check");
+
+		int result=0;
+		int no=0;
+		for(int i=0;i<check.length;i++) {
+			no=Integer.parseInt(check[i]);
+			result+=dao.admin_airticket_restart(no);		
+		}
+		if(result==check.length) {
+			dao.admin_reservation_cancle(no);
+			out.print("<script>alert('운행 재개 완료!');location.href='admin_airticket_list.ks'</script>");
+		}
+		else {
+			out.print("<script>alert('사이트 관리자에게 문의해주세요');location.href='admin_airticket_list.ks'</script>");
+		}
+		
+	}
 
 }

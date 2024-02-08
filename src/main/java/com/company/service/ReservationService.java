@@ -1,6 +1,8 @@
 package com.company.service;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,7 @@ import com.company.dto.AirTicketDto;
 import com.company.dto.ReservationDto;
 import com.company.dto.ReservationVO;
 import com.company.dto.UserDto;
+import com.company.util.PagingDto;
 
 
 public interface ReservationService {
@@ -24,7 +27,9 @@ public interface ReservationService {
 	public void myreservation_detail(@RequestParam int rpno,Model model) throws IOException;
 	public void pay(HttpServletRequest request, HttpServletResponse response) throws IOException;
 	public void reservationCancle(HttpServletRequest request, HttpServletResponse response) throws IOException;
-
+	public List<ReservationDto> listCnt(Map<String,Integer> para);
+	public PagingDto paging(int pstartno);
+	
 
 
 }

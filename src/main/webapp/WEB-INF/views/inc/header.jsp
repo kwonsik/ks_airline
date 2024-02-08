@@ -919,7 +919,7 @@ a:hover, a:focus {
 							<c:when test="${userno==0 }">
 								<li><a href="admin_airticket_list.ks">항공편 관리</a></li>
 								<li><a href="admin_reservation_list.ks">예약 관리</a></li>
-								<li><a href="admin_user_view.ks">회원 관리</a></li>
+								<li><a href="admin_user_list.ks">회원 관리</a></li>
 								<li><a href="board_list.ks">게시판</a></li>
 								<%-- 
 								<li><a href='#'>마이페이지</a>

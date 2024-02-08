@@ -16,4 +16,5 @@ public interface AirTicketDao {
 	public int admin_airticket_edit(AirTicketDto dto);
 	public int admin_airticket_stop(int no);
 	public int admin_reservation_cancle(int no);
+	public int admin_airticket_restart(int no);
 }

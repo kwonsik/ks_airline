@@ -123,12 +123,12 @@
 					
 				$("#restart").click(function() {
 					$("#myModal").modal();
-					$("#inputPassform").on("submit",function(){
+					$("#check_pass_ajax").on("click",function(){
 						$.ajax({
 							url:"check_pass_ajax.ks", //경로
 							type:"post", //get, post
 							dataType:"text", //text, json, xml
-							data:{inputpass : $("#inputpass").val()},
+							data:{userpass : $("#inputpass").val()},
 							success:function(data){
 								if(data==1){
 									$("#airDeleteForm").attr("action","admin_airticket_restart.ks");

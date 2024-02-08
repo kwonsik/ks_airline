@@ -2,6 +2,8 @@ package com.company.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,9 +17,10 @@ import org.springframework.ui.Model;
 import com.company.dao.ReservationDao;
 
 import com.company.dto.AirTicketDto;
-
+import com.company.dto.ReservationDto;
 import com.company.dto.ReservationVO;
 import com.company.dto.UserDto;
+import com.company.util.PagingDto;
 
 @Service("rservationService")
 public class ReservationServiceImpl implements ReservationService{
@@ -96,7 +99,8 @@ public class ReservationServiceImpl implements ReservationService{
 				dao.reservationCount(vo);
 			}
 		}
-		else {
+		else if(request.getParameter("select2")==null){
+			System.out.println("편도");
 			vo.setNo(Integer.parseInt(request.getParameter("select")));
 			aprice=adult*dao.getAprice(vo);
 			kprice=kid*dao.getKprice(vo);
@@ -170,6 +174,17 @@ public class ReservationServiceImpl implements ReservationService{
 			out.print("<script>alert('관리자에게 문의해주세요');location.href='main.ks'</script>");
 		}
 		
+	}
+
+
+	@Override
+	public List<ReservationDto> listCnt(Map<String, Integer> para) {
+		return dao.listCnt(para);
+	}
+
+	@Override
+	public PagingDto paging(int pstartno) {
+		return new PagingDto(dao.listtotal(),pstartno);
 	}	
 
 }

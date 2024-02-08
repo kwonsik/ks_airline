@@ -1,6 +1,7 @@
 package com.company.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.company.dto.AirTicketDto;
 import com.company.dto.ReservationDto;
@@ -24,5 +25,7 @@ public interface ReservationDao {
 	public List<ReservationVO> myreservation_detail(int rpno);
 	public int pay(int rno);
 	public int reservationCancle(int rno);
+	public int listtotal(); // 전체 갯수
+	public List<ReservationDto> listCnt(Map<String,Integer> para);
 	
 }

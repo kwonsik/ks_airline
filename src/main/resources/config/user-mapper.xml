@@ -38,5 +38,18 @@
 	<delete id="deleteUser" parameterType="int">
 		delete from userinfo where userno=#{userno}
 	</delete>
+	<select id="listtotal"  resultType="int">
+		select count(*) from userinfo 
+		<where>
+			<if test="username!=null">username=#{username}</if>
+		</where>
+	</select>
+	<select id="listCnt" resultType="UserDto" parameterType="java.util.HashMap">
+		select * from userinfo
+		<where>
+			<if test="username!=null">username=#{username}</if>
+		</where>
+		 order by userno desc limit #{pstartno}, #{onepagelimit}
+	</select>
 	
 </mapper>

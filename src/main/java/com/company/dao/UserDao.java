@@ -1,7 +1,11 @@
 package com.company.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.company.dto.BoardDto;
 import com.company.dto.UserDto;
 
 @MyDao
@@ -18,4 +22,6 @@ public interface UserDao {
 	public int changeUser(UserDto dto);
 	public int check_pass_ajax(UserDto dto);
 	public int deleteUser(int userno);
+	public int listtotal(); // 전체 갯수
+	public List<UserDto> listCnt(Map<String,Integer> para);
 }

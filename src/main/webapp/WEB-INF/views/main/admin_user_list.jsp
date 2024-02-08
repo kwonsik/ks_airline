@@ -26,10 +26,10 @@
 					</tr>
 				</thead>
 				<tbody style="text-align: center;" class="tbody">
-					<c:forEach var="i" items="${paging.ulist10 }" varStatus="status">
+					<c:forEach var="i" items="${list }" varStatus="status">
 						<tr>
 							<td>${i.userno }</td>
-							<td><a href='admin_user_detail.ks?userno=${i.userno }'>${i.userid }</a></td>
+							<td><a href='userdetail.ks?userno=${i.userno }'>${i.userid }</a></td>
 							<td>${i.username}</td>
 							<td>${i.useremail }</td>
 							<td>${i.userphone }</td>
@@ -46,18 +46,18 @@
 					<c:choose>
 						<c:when test="${paging.startBtn!=1 }">
 							<li><a
-								href="admin_user_view.ks?pstartno=${(paging.startBtn-(paging.onepagelimit+1))*paging.onepagelimit }">previous</a></li>
+								href="admin_user_list.ks?pstartno=${(paging.startBtn-(paging.onepagelimit+1))*paging.onepagelimit }&username=${param.username}">previous</a></li>
 						</c:when>
 					</c:choose>
 					<c:forEach var="i" begin="${paging.startBtn }"
 						end="${paging.endBtn }" step="1" varStatus="status">
 						<li class="<c:if test='${i==paging.currentBtn}'>active</c:if>"><a
-							href="admin_user_view.ks?pstartno=${(i-1)*paging.onepagelimit }">${i}</a></li>
+							href="admin_user_list.ks?pstartno=${(i-1)*paging.onepagelimit }&username=${param.username}">${i}</a></li>
 					</c:forEach>
 					<c:choose>
 						<c:when test="${paging.endBtn!=paging.pageAll }">
 							<li><a
-								href="admin_user_view.ks?pstartno=${paging.endBtn*paging.onepagelimit }">Next</a></li>
+								href="admin_user_list.ks?pstartno=${paging.endBtn*paging.onepagelimit }&username=${param.username}">Next</a></li>
 						</c:when>
 					</c:choose>
 				</ul>
@@ -82,49 +82,16 @@
 		
 		
 		<script>
-			let aj=function(){
-				$.ajax({
-					url:"admin_user_search.ks", //경로
-					type:"get", //get, post
-					dataType:"json", //text, json, xml
-					data:{username : $("#username").val()},
-					success:function(data){
-						console.log(data.ulist10.userno);
-						$(".tbody").html("");
-						for(let i=0;i<data.ulist10.length;i++){
-							//1.동적태그 생성
-							
-							let tr=$("<tr>");
-							let td1=$("<td>").html(data.ulist10[i].userno);
-							let td2=$("<td>").html(data.ulist10[i].userid);
-							let td3=$("<td>").html(data.ulist10[i].username);
-							let td4=$("<td>").html(data.ulist10[i].useremail);
-							let td5=$("<td>").html(data.ulist10[i].userphone);
-							let td6=$("<td>").html(data.ulist10[i].time);
-							let td7=$("<td>").html(data.ulist10[i].userip);
-							let td8=$("<td>").html("<input type='checkbox' name='check' value='"+data.ulist10[i].userno+"' style='width: 20%'>");
-							
-							
-							//2. 조합
-							tr.append(td1).append(td2).append(td3).append(td4).append(td5).append(td6).append(td7).append(td8);
-							$(".tbody").append(tr);
-						}
-					}, //성공시 처리
-					error:function(xhr, textStatus, errorThrown){
-						
-					} //실패시 처리
-				});//ajax
-			}
 			$(document).ready(function() {
 				$("#deleteUser").click(function() {
 					$("#myModal").modal();
 				});
-				$("#inputPassform").on("submit",function(){
+				$("#check_pass_ajax").on("click",function(){
 					$.ajax({
 						url:"check_pass_ajax.ks", //경로
 						type:"post", //get, post
 						dataType:"text", //text, json, xml
-						data:{inputpass : $("#inputpass").val()},
+						data:{userpass : $("#inputpass").val()},
 						success:function(data){
 							if(data==1){
 								$("#userDeleteForm").submit();
@@ -138,13 +105,12 @@
 						} //실패시 처리
 					});//ajax
 				});
-					
+				
 				$("#search").on("click",function(){
-					aj();
+					let username=$("#username").val();
+					location.href='admin_user_list.ks?username='+username;
 				});
-				$("#username").on("keydown",function(){
-					aj();
-				});	
+					
 			});
 		</script>
 	

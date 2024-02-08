@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +17,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.company.dao.UserDao;
+import com.company.dto.ReservationDto;
 import com.company.dto.UserDto;
+import com.company.util.PagingDto;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -169,6 +173,38 @@ public class UserServiceImpl implements UserService{
 			out.print("<script>alert('관리자에게 문의해주세요.');location.href='main.ks';</script>");
 		}
 	
+	}
+
+	@Override
+	public List<UserDto> listCnt(Map<String, Integer> para) {
+		return dao.listCnt(para);
+	}
+
+	@Override
+	public PagingDto paging(int pstartno) {
+		return new PagingDto(dao.listtotal(), pstartno);
+	}
+
+	@Override
+	public void admin_user_delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		String check[]=request.getParameterValues("check");
+
+		int result=0;
+		int no=0;
+		for(int i=0;i<check.length;i++) {
+			no=Integer.parseInt(check[i]);
+			result+=dao.deleteUser(no);		
+		}
+		if(result==check.length) {
+			out.print("<script>alert('회원 강제 탈퇴 완료!');location.href='admin_user_list.ks'</script>");
+		}
+		else {
+			out.print("<script>alert('사이트 관리자에게 문의해주세요');location.href='admin_user_list.ks'</script>");
+		}
+		
 	}
 
 

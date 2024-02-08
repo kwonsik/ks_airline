@@ -19,7 +19,7 @@
 				<h3>항공권 조회</h3>
 				<h3 class="hidden">항공권 조회</h3>
 				<input type="hidden" value="${param.kid }" name="kid">
-				<input type="hidden" value="${param.kid }" name="adult">
+				<input type="hidden" value="${param.adult }" name="adult">
 				<div class="content">
 					<table class="table table-borderd">
 						<caption>가는 비행기</caption>

@@ -15,30 +15,30 @@
 	<select id="searchList2" resultType="AirticketDto" parameterType="AirticketDto">
 		select * from airticket where departure=#{arrival} and arrival=#{departure} and date=#{date} and count!=0 and state!=2
 	</select>
-	<select id="getAprice" parameterType="reservationVO" resultType="int">
+	<select id="getAprice" parameterType="ReservationVO" resultType="int">
 		select aprice from airticket where no=#{no}
 	</select>
-	<select id="getKprice" parameterType="reservationVO" resultType="int">
+	<select id="getKprice" parameterType="ReservationVO" resultType="int">
 		select kprice from airticket where no=#{no}
 	</select>
-	<insert id="reservationPrice" parameterType="reservationVO">
+	<insert id="reservationPrice" parameterType="ReservationVO">
 		insert into reservationPrice (userno,price) value(#{userno},#{price})
 	</insert>
-	<insert id="reservationA" parameterType="reservationVO">
+	<insert id="reservationA" parameterType="ReservationVO">
 		insert into reservation (rpno,no,price,adult) 
 		value((select max(rpno) from reservationPrice),#{no},(select aprice from airticket where no=#{no}),'A')
 	</insert>
-	<insert id="reservationK" parameterType="reservationVO">
+	<insert id="reservationK" parameterType="ReservationVO">
 		insert into reservation (rpno,no,price,adult) 
 		value((select max(rpno) from reservationPrice),#{no},(select kprice from airticket where no=#{no}),'K')
 	</insert>
-	<update id="reservationCount" parameterType="reservationVO">
+	<update id="reservationCount" parameterType="ReservationVO">
 		update airticket set count=count-1 where no=1
 	</update>
-	<select id="myreservation" parameterType="int" resultType="reservationPriceDto">
+	<select id="myreservation" parameterType="int" resultType="ReservationPriceDto">
 		select * from reservationPrice order by rpno desc;
 	</select>
-	<select id="myreservation_detail" parameterType="int" resultType="reservationVO">
+	<select id="myreservation_detail" parameterType="int" resultType="ReservationVO">
 		select a.company,a.name,a.date,a.arrival,a.departure,a.atime,a.dtime,rv.price,rv.state,rv.rno 
 		 from reservation rv join airticket a join reservationPrice rp
 		on(a.no=rv.no and rv.rpno=rp.rpno) where rp.rpno=#{rpno} order by rno desc
@@ -49,4 +49,12 @@
 	<update id="reservationCancle" parameterType="int">
 		update reservation set state=3 where rno=#{rno}
 	</update>
+	<select id="listtotal"  resultType="int">
+		select count(*) from reservation inner join airticket using(no)
+	</select>
+	<select id="listCnt" resultType="ReservationVO" parameterType="java.util.HashMap">
+		select rno,rp.userno,a.no,a.name,rv.time,rv.price,rv.adult,rv.state 
+		from reservation rv join airticket a join reservationPrice rp 
+		on(rv.rpno=rp.rpno and rv.no=a.no) order by rv.rno desc limit #{pstartno}, #{onepagelimit}
+	</select>	
 </mapper>

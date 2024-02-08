@@ -232,10 +232,35 @@ public class FrontController {
 	}
 	@PostMapping("/admin_airticket_stop.ks")
 	public void admin_airticket_stop(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		System.out.println("들어옴 ");
 		airticketService.admin_airticket_stop(request, response);
 	}
-	
+	@PostMapping("/admin_airticket_restart.ks")
+	public void admin_airticket_restart(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		airticketService.admin_airticket_restart(request, response);
+	}
+	@GetMapping("/admin_reservation_list.ks")
+	public String admin_reservation_list(@RequestParam(value="pstartno", defaultValue = "0")int pstartno ,Model model){
+		Map<String, Integer> para=new HashMap<String, Integer>();
+		para.put("pstartno", pstartno);
+		para.put("onepagelimit", 10);
+		model.addAttribute("list",reservationService.listCnt(para));
+		model.addAttribute("paging",reservationService.paging(pstartno));
+		return "admin_reservation_list";
+	}
+	@GetMapping("/admin_user_list.ks")
+	public String admin_user_list(@RequestParam(value="pstartno", defaultValue = "0")int pstartno ,
+			Model model){
+		Map<String, Integer> para=new HashMap<String, Integer>();
+		para.put("pstartno", pstartno);
+		para.put("onepagelimit", 10);
+		model.addAttribute("list",userService.listCnt(para));
+		model.addAttribute("paging",userService.paging(pstartno));
+		return "admin_user_list";
+	}
+	@PostMapping("/admin_user_delete.ks")
+	public void admin_user_delete(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		userService.admin_user_delete(request, response);
+	}
 	
 	
 	
