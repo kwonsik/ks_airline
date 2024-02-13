@@ -27,7 +27,7 @@ public interface UserService {
 	public void changeUser(UserDto dto,HttpServletRequest request, HttpServletResponse response) throws IOException;
 	public int check_pass_ajax(UserDto dto,HttpServletRequest request, HttpServletResponse response) throws IOException;
 	public void deleteUser(@RequestParam int userno,HttpServletRequest request, HttpServletResponse response) throws IOException;
-	public List<UserDto> listCnt(Map<String,Integer> para);
-	public PagingDto paging(int pstartno);
+	public List<UserDto> listCnt(Map<String,Object> para);
+	public PagingDto paging(Map<String,Object> para);
 	public void admin_user_delete(HttpServletRequest request, HttpServletResponse response) throws IOException;
 }

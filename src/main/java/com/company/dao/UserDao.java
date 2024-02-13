@@ -22,6 +22,6 @@ public interface UserDao {
 	public int changeUser(UserDto dto);
 	public int check_pass_ajax(UserDto dto);
 	public int deleteUser(int userno);
-	public int listtotal(); // 전체 갯수
-	public List<UserDto> listCnt(Map<String,Integer> para);
+	public int listtotal(Map<String,Object> para); // 전체 갯수
+	public List<UserDto> listCnt(Map<String,Object> para);
 }

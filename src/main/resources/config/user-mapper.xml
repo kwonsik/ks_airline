@@ -38,11 +38,14 @@
 	<delete id="deleteUser" parameterType="int">
 		delete from userinfo where userno=#{userno}
 	</delete>
-	<select id="listtotal"  resultType="int">
-		select count(*) from userinfo 
+	<select id="listtotal"  resultType="int" parameterType="java.util.HashMap">
+		select count(*) from userinfo
 		<where>
 			<if test="username!=null">username=#{username}</if>
 		</where>
+			
+			
+		
 	</select>
 	<select id="listCnt" resultType="UserDto" parameterType="java.util.HashMap">
 		select * from userinfo

@@ -176,13 +176,13 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<UserDto> listCnt(Map<String, Integer> para) {
+	public List<UserDto> listCnt(Map<String, Object> para) {
 		return dao.listCnt(para);
 	}
 
 	@Override
-	public PagingDto paging(int pstartno) {
-		return new PagingDto(dao.listtotal(), pstartno);
+	public PagingDto paging(Map<String,Object> para) {
+		return new PagingDto(dao.listtotal(para),(int)para.get("pstartno"));
 	}
 
 	@Override

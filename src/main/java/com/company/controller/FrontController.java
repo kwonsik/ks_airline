@@ -249,12 +249,18 @@ public class FrontController {
 	}
 	@GetMapping("/admin_user_list.ks")
 	public String admin_user_list(@RequestParam(value="pstartno", defaultValue = "0")int pstartno ,
-			Model model){
-		Map<String, Integer> para=new HashMap<String, Integer>();
+			HttpServletRequest request,Model model){
+		String username="";
+		if(request.getParameter("username")==null) {username=null;}
+		else {username=request.getParameter("username");}
+		Map<String, Object> para=new HashMap<String, Object>();
+
 		para.put("pstartno", pstartno);
 		para.put("onepagelimit", 10);
+		para.put("username", username);
+		
 		model.addAttribute("list",userService.listCnt(para));
-		model.addAttribute("paging",userService.paging(pstartno));
+		model.addAttribute("paging",userService.paging(para));
 		return "admin_user_list";
 	}
 	@PostMapping("/admin_user_delete.ks")

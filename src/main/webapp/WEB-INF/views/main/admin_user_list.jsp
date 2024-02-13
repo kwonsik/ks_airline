@@ -6,6 +6,8 @@
 	<div class="container">
 		<h3>모든 회원</h3>
 		<h3 class="hidden">모든 회원</h3>
+		<p>${paging }</p>
+		<p>${list }</p>
 		<p>
 			총 회원 - <span>${paging.listTotal }명</span>
 		</p>
